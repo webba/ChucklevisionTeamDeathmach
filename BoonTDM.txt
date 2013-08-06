@@ -1,20 +1,20 @@
-Gamemode
+"Gamemode"
 {
-    base        base
-    title  BoonTDM
-    version   1.0
-    menusystem    1
+    "base"        "base"
+    "title"  "BoonTDM"
+    "version"   "1.0"
+    "menusystem"    "1"
 
 
-    author_name   FreddiRox
-    author_email  
-    author_url    
+    "author_name"   "FreddiRox"
+    "author_email"  
+    "author_url"    
 
 
-    maps ^gm_
+    "maps" "^gm_"
 
 
-    icon  
-    info  
-    hide  0
+    "icon"  
+    "info"  
+    "hide"  "0"
 }
