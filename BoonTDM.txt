@@ -1,0 +1,20 @@
+Gamemode
+{
+    base        base
+    title  BoonTDM
+    version   1.0
+    menusystem    1
+
+
+    author_name   FreddiRox
+    author_email  
+    author_url    
+
+
+    maps ^gm_
+
+
+    icon  
+    info  
+    hide  0
+}
