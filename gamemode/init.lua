@@ -29,7 +29,7 @@ end
 
 function GM:PlayerLoadout( ply )
 	ply:StripWeapons()
-	Ply:StripAmmo()
+	ply:StripAmmo()
 end
 
 
