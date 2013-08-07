@@ -1,13 +1,12 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-AddCSLuaFile( "specialchars.lua" )
 
 include( 'shared.lua' )
-include( 'specialchars.lua' )
  
 // Gamemode Functions
 
 function GAMEMODE:PlayerSpawn(ply)
+	ply:ChatPrint("spawn")
 	ply:PickUpAttachment("aimpoint")
 	ply:PickUpAttachment("acog")
 	ply:PickUpAttachment("ballistic")
