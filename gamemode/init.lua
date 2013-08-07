@@ -3,7 +3,7 @@ AddCSLuaFile( "shared.lua" )
 
 include( 'shared.lua' )
 
-DeriveGamemode("sandbox")
+DeriveGamemode("base")
  
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
@@ -22,7 +22,6 @@ function GM:PlayerSpawn( ply )
 	ply:PickUpAttachment("cmag")
 	ply:PickUpAttachment("elcan")
 	ply:PickUpAttachment("kobra")
-	ply:PickUpAttachment("reflexsight")
 	ply:PickUpAttachment("riflereflex")
 	ply:PickUpAttachment("vertgrip")
 end
