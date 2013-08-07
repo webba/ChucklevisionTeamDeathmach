@@ -5,7 +5,7 @@ include( 'shared.lua' )
  
 // Gamemode Functions
 
-function GAMEMODE:PlayerSpawn(ply)
+function GM:PlayerSpawn(ply)
 	ply:ChatPrint("spawn")
 	ply:PickUpAttachment("aimpoint")
 	ply:PickUpAttachment("acog")
