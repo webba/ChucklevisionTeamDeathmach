@@ -29,6 +29,14 @@ end
 function GM:PlayerLoadout( ply )
 	ply:StripWeapons()
 	ply:StripAmmo()
+	ply:Give("cstm_rif_ak47")
+	ply:Give("cstm_rif_gail")
+	ply:Give("cstm_rif_m249")
+	ply:Give("cstm_smg_tmp")
+	ply:Give("cstm_sniper_scout")
+	ply:Give("cstm_sniper_sg552")
+	ply:Give("cstm_pistop_deagle")
+	ply:Give("cstm_pistop_p228")
 end
 
 
