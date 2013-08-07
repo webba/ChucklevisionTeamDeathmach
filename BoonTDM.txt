@@ -7,14 +7,14 @@
 
 
     "author_name"   "FreddiRox"
-    "author_email"  
-    "author_url"    
+    "author_email"  ""
+    "author_url"    ""
 
 
     "maps" "^gm_"
 
 
-    "icon"  
-    "info"  
+    "icon"  ""
+    "info"  ""
     "hide"  "0"
 }
