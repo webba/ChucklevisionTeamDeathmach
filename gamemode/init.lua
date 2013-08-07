@@ -2,10 +2,17 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 
 include( 'shared.lua' )
+
+DeriveGamemode("sandbox")
  
 // Gamemode Functions
+function GM:PlayerInitialSpawn( ply )
+	self.BaseClass:PlayerInitialSpawn(ply)
+end
 
-function GM:PlayerSpawn(ply)
+
+function GM:PlayerSpawn( ply )
+	self.BaseClass:PlayerSpawn(ply)
 	ply:ChatPrint("spawn")
 	ply:PickUpAttachment("aimpoint")
 	ply:PickUpAttachment("acog")
@@ -19,6 +26,7 @@ function GM:PlayerSpawn(ply)
 	ply:PickUpAttachment("reflexsight")
 	ply:PickUpAttachment("riflereflex")
 	ply:PickUpAttachment("vertgrip")
+	ply:ChatPrint(ply:GetBoneCount())
 	ply:ChatPrint("bone: " .. ply:LookupBone("ValveBiped.Bip01_Head1"))
 	ply:ChatPrint("bone: " .. ply:LookupBone("ValveBiped.Anim_Attachment_RH"))
 	ply:ChatPrint("bone: " .. ply:LookupBone("ValveBiped.Bip01_Spine"))
