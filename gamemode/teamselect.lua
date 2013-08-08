@@ -47,7 +47,8 @@ end
 --Function
 function ShowBoonMenu( um )
     BoonMenu.DermaPanel:SetVisible(true)
-	icon:SetVisible(true)
+	icon1:SetVisible(true)
+	icon2:SetVisible(true)
     BoonMenu.DermaPanel:MakePopup()
 end
 usermessage.Hook("TeamMenu", ShowBoonMenu)
