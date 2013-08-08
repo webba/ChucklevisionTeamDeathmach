@@ -37,12 +37,6 @@ function GM:PlayerNoClip( ply )
 	end
 end
 
-function GM:PlayerThinkDeath(ply)
-	if ply:Team() == TEAM_SPECTATOR then
-		return false 
-	end
-end
-
 function GM:PlayerSpawn( ply )
 	if ply:Team() == 1 or ply:Team() == 2 then
 		self.BaseClass:PlayerSpawn(ply)
@@ -133,9 +127,11 @@ function SelectTeam( ply, cmd, arg )
 			if arg[1] == "1" then
 				ply:SetTeam(2)
 				ply:UnLock()
+				ply:Spawn()
 			elseif arg[1] == "2" then
 				ply:SetTeam(2)
 				ply:UnLock()
+				ply:Spawn()
 			end
 		end
 	end
