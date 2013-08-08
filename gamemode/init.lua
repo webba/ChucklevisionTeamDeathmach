@@ -110,7 +110,7 @@ concommand.Add("spawnme", spawnshit)
 
 function SelectTeam( ply, cmd, arg )
 	if GM.Round then
-		if #arg = 1 then
+		if #arg == 1 then
 			if arg[1] == "1" then
 				ply:SetTeam(2)
 			elseif arg[1] == "2" then
