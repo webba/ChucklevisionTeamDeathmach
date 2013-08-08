@@ -20,8 +20,8 @@ function GM:PlayerInitialSpawn( ply )
 	else 
 		ply:SetTeam(TEAM_SPECTATOR)
 		ply:KillSilent()
+		ply:Lock()
 		ply:Spectate(OBS_MODE_ROAMING)
-		ply:SetMoveType(MOVETYPE_NOCLIP)
 		if Round then
 			umsg.Start("TeamMenu", ply)
 			umsg.End()
@@ -132,10 +132,10 @@ function SelectTeam( ply, cmd, arg )
 		if #arg == 1 then
 			if arg[1] == "1" then
 				ply:SetTeam(2)
-				ply:KillSilent()
+				ply:UnLock()
 			elseif arg[1] == "2" then
 				ply:SetTeam(2)
-				ply:KillSilent()
+				ply:UnLock()
 			end
 		end
 	end
