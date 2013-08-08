@@ -91,6 +91,9 @@ function GM:PlayerLoadout( ply )
 end
 
 function GM:PlayerShouldTakeDamage( victim, pl )
+	if victim:Team() == TEAM_SPECTATOR then
+		return false
+	end
 	if Round then
 		if pl:IsPlayer() then
 			if (pl:Team() == victim:Team() and GetConVarNumber("mp_friendlyfire") == 0) then
@@ -103,10 +106,10 @@ function GM:PlayerShouldTakeDamage( victim, pl )
 	end
 end
 
-function giveshit(ply, cmd, arg)
-	ply:Give("cstm_" .. arg[1])
+function pos(ply, cmd, arg)
+	ply:ChatPrint(ply:GetPos():__tostring())
 end
-concommand.Add("giveme", giveshit)
+concommand.Add("ppos", pos)
 
 function spawnshit(ply, cmd, arg)
 	local ee = ents.Create(arg[1])
@@ -125,7 +128,7 @@ function SelectTeam( ply, cmd, arg )
 	if Round then
 		if #arg == 1 then
 			if arg[1] == "1" then
-				ply:SetTeam(2)
+				ply:SetTeam(1)
 				ply:UnLock()
 				ply:Spawn()
 			elseif arg[1] == "2" then
