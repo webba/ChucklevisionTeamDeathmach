@@ -21,6 +21,7 @@ function GM:PlayerInitialSpawn( ply )
 		ply:SetTeam(TEAM_SPECTATOR)
 		ply:KillSilent()
 		ply:Spectate(OBS_MODE_ROAMING)
+		ply:SetMoveType(MOVETYPE_OBSERVER)
 		if Round then
 			umsg.Start("TeamMenu", ply)
 			umsg.End()
