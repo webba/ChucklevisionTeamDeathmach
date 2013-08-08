@@ -25,12 +25,12 @@ BoonMenu.DermaPanel3.Paint = function()
 end
 
 local icon1 = vgui.Create( "DModelPanel", BoonMenu.DermaPanel )
-icon2:SetPos( 10, 33 )
-icon2:SetSize( 200, 200 )
-icon2:SetModel( 'models/player/Group03/Male_01.mdl' )
-icon2.DoClick = function ()
+icon1:SetPos( 10, 33 )
+icon1:SetSize( 200, 200 )
+icon1:SetModel( 'models/player/Group03/Male_01.mdl' )
+icon1.DoClick = function ()
 	RunConsoleCommand( 'choose_team', '1' )
-	icon2:SetVisible(false)
+	icon1:SetVisible(false)
 	BoonMenu.DermaPanel:SetVisible(false)
 end
 
