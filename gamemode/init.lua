@@ -155,10 +155,12 @@ function SelectTeam( ply, cmd, arg )
 		if #arg == 1 then
 			if arg[1] == "1" then
 				ply:SetTeam(1)
+				ply:SetModel( 'models/player/Police.mdl' )
 				ply:UnLock()
 				ply:Spawn()
 			elseif arg[1] == "2" then
 				ply:SetTeam(2)
+				ply:SetModel( 'models/player/Group03/Male_01.mdl' )
 				ply:UnLock()
 				ply:Spawn()
 			end
