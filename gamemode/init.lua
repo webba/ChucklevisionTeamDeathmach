@@ -6,13 +6,9 @@ include( 'shared.lua' )
 
 DeriveGamemode("base")
 
+GAMEMODE.Round = false
+
 // Gamemode Functions
-function GamemodeVars()
-  GM.Round = false
-end
-hook.Add( "Initialize", "GMVars", GamemodeVars );
-
-
 function GM:PlayerInitialSpawn( ply )
 	self.BaseClass:PlayerInitialSpawn(ply)
 	GM:PlayerSpawnAsSpectator( ply )
