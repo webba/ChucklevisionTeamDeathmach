@@ -11,7 +11,7 @@ Round = false
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
 	self.BaseClass:PlayerInitialSpawn(ply)
-	GM:PlayerSpawnAsSpectator( ply )
+	self:PlayerSpawnAsSpectator( ply )
 	if #player.GetAll() >= 2 and not Round then
 		Round = true 
 		umsg.Start("TeamMenu", ply)
