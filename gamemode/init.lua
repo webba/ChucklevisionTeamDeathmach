@@ -6,7 +6,7 @@ include( 'shared.lua' )
 
 DeriveGamemode("sandbox")
 
-Round = false
+local Round = false
 
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
