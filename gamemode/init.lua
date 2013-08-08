@@ -19,7 +19,6 @@ function GM:PlayerInitialSpawn( ply )
 		end)
 	else 
 		ply:SetTeam(TEAM_SPECTATOR)
-		ply:Spectate( OBS_MODE_ROAMING )
 		if Round then
 			umsg.Start("TeamMenu", ply)
 			umsg.End()
