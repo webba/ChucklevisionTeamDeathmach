@@ -114,6 +114,11 @@ function spawnshit(ply, cmd, arg)
 end
 concommand.Add("spawnme", spawnshit)
 
+function spawnshit(ply, cmd, arg)
+	umsg.Start("TeamMenu", ply)
+	umsg.End()
+end
+concommand.Add("showmenu", spawnshit)
 
 function SelectTeam( ply, cmd, arg )
 	if GM.Round then
