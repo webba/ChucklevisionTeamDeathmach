@@ -20,9 +20,10 @@ function GM:PlayerInitialSpawn( ply )
 		end)
 	else 
 		ply:SetTeam(TEAM_SPECTATOR)
-		ply:SetPos(GetCameraPos())
+		local v = GetCameraPos()
+		print("setting ply to " .. v:__tostring())
+		ply:SetPos(v)
 		ply:Lock()
-		ply:Spectate(OBS_MODE_ROAMING)
 		if Round then
 			umsg.Start("TeamMenu", ply)
 			umsg.End()
@@ -40,7 +41,6 @@ function GetSpawnPos( ply )
 end
 
 function GetCameraPos()
-	print("finding camera pos")
 	local n1 = math.random(1, 3)
 	local x, y, z = 4736.417480, 5314.400391 - math.random(1, 650), -342.520813
 	if n1 == 2 then
@@ -48,7 +48,6 @@ function GetCameraPos()
 	elseif n1 == 3 then
 		x, y, z = 7130.868164, 6053.958496 - math.random(1, 400), -272.230988
 	end
-	print(x,y,z)
 	return Vector(x, y, z)
 end
 
