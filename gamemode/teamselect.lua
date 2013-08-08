@@ -29,7 +29,7 @@ icon:SetPos( 10, 33 )
 icon:SetSize( 200, 200 )
 icon:SetModel( 'models/player/Group03/Male_01.mdl' )
 icon.DoClick = function ()
-	RunConsoleCommand( 'kill' )
+	RunConsoleCommand( 'choose_team 1' )
 	icon:SetVisible(false)
 	BoonMenu.DermaPanel:SetVisible(false)
 end
@@ -39,17 +39,17 @@ icon:SetPos( 220, 33 )
 icon:SetSize( 200, 200 )
 icon:SetModel( 'models/player/Police.mdl' )
 icon.DoClick = function ()
-	RunConsoleCommand( 'kill' )
+	RunConsoleCommand( 'choose_team 2' )
 	icon:SetVisible(false)
 	BoonMenu.DermaPanel:SetVisible(false)
 end
 
 --Function
-function ShowBoonMenu(ply, cmd, arg)
+function ShowBoonMenu( um )
     BoonMenu.DermaPanel:SetVisible(true)
 	icon:SetVisible(true)
     BoonMenu.DermaPanel:MakePopup()
 end
-concommand.Add("boonmenu", ShowBoonMenu)
+usermessage.Hook("TeamMenu", ShowBoonMenu)
 
 --

@@ -1,40 +1,51 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
+AddCSLuaFile( "teamselect.lua" )
 
 include( 'shared.lua' )
 
 DeriveGamemode("base")
  
+GM.Round = false
+
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
 	self.BaseClass:PlayerInitialSpawn(ply)
+	GM:PlayerSpawnAsSpectator( ply )
+	if #player.GetAll() >= 2 and not self.Round then
+		self.Round = true 
+		umsg.Start("TeamMenu", ply)
+		umsg.End()
+		timer.Simple(0.5, function()
+		end)
+	end
 end
 
-
 function GM:PlayerSpawn( ply )
-	self.BaseClass:PlayerSpawn(ply)
-	self:PlayerLoadout(ply)
-	ply:ChatPrint("spawn")
-	ply:PickUpAttachment("aimpoint")
-	ply:PickUpAttachment("acog")
-	ply:PickUpAttachment("ballistic")
-	ply:PickUpAttachment("bipod")
-	ply:PickUpAttachment("cmag")
-	ply:PickUpAttachment("elcan")
-	ply:PickUpAttachment("kobra")
-	ply:PickUpAttachment("riflereflex")
-	ply:PickUpAttachment("vertgrip")
-	ply:PickUpAttachment("eotech")
-	ply:PickUpAttachment("laser")
-	ply:PickUpAttachment("grenadelauncher")
-	ply:PickUpAttachment("reflex")
-	ply:PickUpAmmoType("ap")
-	ply:PickUpAmmoType("birdshot")
-	ply:PickUpAmmoType("frag")
-	ply:PickUpAmmoType("hp")
-	ply:PickUpAmmoType("incendiary")
-	ply:PickUpAmmoType("magnum")
-	ply:PickUpAmmoType("slug")
+	if ply:Team() == 1 or ply:Team() == 2 then
+		self.BaseClass:PlayerSpawn(ply)
+		self:PlayerLoadout(ply)
+		ply:PickUpAttachment("aimpoint")
+		ply:PickUpAttachment("acog")
+		ply:PickUpAttachment("ballistic")
+		ply:PickUpAttachment("bipod")
+		ply:PickUpAttachment("cmag")
+		ply:PickUpAttachment("elcan")
+		ply:PickUpAttachment("kobra")
+		ply:PickUpAttachment("riflereflex")
+		ply:PickUpAttachment("vertgrip")
+		ply:PickUpAttachment("eotech")
+		ply:PickUpAttachment("laser")
+		ply:PickUpAttachment("grenadelauncher")
+		ply:PickUpAttachment("reflex")
+		ply:PickUpAmmoType("ap")
+		ply:PickUpAmmoType("birdshot")
+		ply:PickUpAmmoType("frag")
+		ply:PickUpAmmoType("hp")
+		ply:PickUpAmmoType("incendiary")
+		ply:PickUpAmmoType("magnum")
+		ply:PickUpAmmoType("slug")
+	end
 end
 
 function GM:PlayerLoadout( ply )
@@ -63,6 +74,26 @@ function GM:PlayerLoadout( ply )
 	ply:Give("cstm_sniper_sg550")
 end
 
+function GM:PlayerShouldTakeDamage( victim, pl )
+	if self.Round then
+		if pl:IsPlayer() then
+			if (pl:Team() == victim:Team() and GetConVarNumber("mp_friendlyfire") == 0) then
+				return false
+			end
+		end
+		return true
+	else 
+		return false
+	end
+end
+
+function GM:PlayerSpawnAsSpectator( ply )
+	self.BaseClass:PlayerSpawnAsSpectator(ply)
+	if self.Round then
+		umsg.Start("TeamMenu", ply)
+		umsg.End()
+	end
+end
 
 function giveshit(ply, cmd, arg)
 	ply:Give("cstm_" .. arg[1])
@@ -75,3 +106,27 @@ function spawnshit(ply, cmd, arg)
 	ee:Spawn()
 end
 concommand.Add("spawnme", spawnshit)
+
+
+function SelectTeam( ply, cmd, arg )
+	if GM.Round then
+		if #arg = 1 then
+			if arg[1] == "1" then
+				ply:SetTeam(2)
+			elseif arg[1] == "2" then
+				ply:SetTeam(2)
+			end
+		end
+	end
+end
+concommand.Add("choose_team", SelectTeam)
+
+
+//Player
+local _R = debug.getregistry()
+local meta = _R.Player
+
+
+function meta:gun( ... )
+	-- body
+end
