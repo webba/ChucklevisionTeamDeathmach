@@ -11,13 +11,19 @@ Round = false
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
 	self.BaseClass:PlayerInitialSpawn(ply)
-	self:PlayerSpawnAsSpectator( ply )
 	if #player.GetAll() >= 2 and not Round then
 		Round = true 
-		umsg.Start("TeamMenu", ply)
+		umsg.Start("TeamMenu")
 		umsg.End()
 		timer.Simple(0.5, function()
 		end)
+	else 
+		ply:SetTeam(TEAM_SPECTATOR)
+		ply:Spectate( OBS_MODE_ROAMING )
+		if Round then
+			umsg.Start("TeamMenu", ply)
+			umsg.End()
+		end
 	end
 end
 
@@ -87,14 +93,6 @@ function GM:PlayerShouldTakeDamage( victim, pl )
 	end
 end
 
-function GM:PlayerSpawnAsSpectator( ply )
-	self.BaseClass:PlayerSpawnAsSpectator(ply)
-	if Round then
-		umsg.Start("TeamMenu", ply)
-		umsg.End()
-	end
-end
-
 function giveshit(ply, cmd, arg)
 	ply:Give("cstm_" .. arg[1])
 end
@@ -113,8 +111,10 @@ function SelectTeam( ply, cmd, arg )
 		if #arg == 1 then
 			if arg[1] == "1" then
 				ply:SetTeam(2)
+				ply:KillSilent()
 			elseif arg[1] == "2" then
 				ply:SetTeam(2)
+				ply:KillSilent()
 			end
 		end
 	end
