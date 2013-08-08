@@ -6,14 +6,14 @@ include( 'shared.lua' )
 
 DeriveGamemode("base")
 
-GAMEMODE.Round = false
+Round = false
 
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
-	self.BaseClass:PlayerInitialSpawn(ply)
+	BaseClass:PlayerInitialSpawn(ply)
 	GM:PlayerSpawnAsSpectator( ply )
-	if #player.GetAll() >= 2 and not self.Round then
-		self.Round = true 
+	if #player.GetAll() >= 2 and not Round then
+		Round = true 
 		umsg.Start("TeamMenu", ply)
 		umsg.End()
 		timer.Simple(0.5, function()
@@ -75,7 +75,7 @@ function GM:PlayerLoadout( ply )
 end
 
 function GM:PlayerShouldTakeDamage( victim, pl )
-	if self.Round then
+	if Round then
 		if pl:IsPlayer() then
 			if (pl:Team() == victim:Team() and GetConVarNumber("mp_friendlyfire") == 0) then
 				return false
@@ -89,7 +89,7 @@ end
 
 function GM:PlayerSpawnAsSpectator( ply )
 	self.BaseClass:PlayerSpawnAsSpectator(ply)
-	if self.Round then
+	if Round then
 		umsg.Start("TeamMenu", ply)
 		umsg.End()
 	end
