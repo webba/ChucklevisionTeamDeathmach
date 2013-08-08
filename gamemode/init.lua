@@ -21,8 +21,10 @@ function GM:PlayerInitialSpawn( ply )
 	else 
 		ply:SetTeam(TEAM_SPECTATOR)
 		local v = GetCameraPos()
-		print("setting ply to " .. v:__tostring())
-		ply:SetPos(v)
+		timer.Simple(1, function()
+			print("setting ply to " .. v:__tostring())
+			ply:SetPos(v)
+		end)		
 		ply:Lock()
 		if Round then
 			umsg.Start("TeamMenu", ply)
