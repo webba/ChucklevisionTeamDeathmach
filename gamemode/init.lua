@@ -10,7 +10,7 @@ Round = false
 
 // Gamemode Functions
 function GM:PlayerInitialSpawn( ply )
-	BaseClass:PlayerInitialSpawn(ply)
+	self.BaseClass:PlayerInitialSpawn(ply)
 	GM:PlayerSpawnAsSpectator( ply )
 	if #player.GetAll() >= 2 and not Round then
 		Round = true 
