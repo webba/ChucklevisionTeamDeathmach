@@ -28,7 +28,7 @@ function GM:PlayerInitialSpawn( ply )
 end
 
 function GM:PlayerNoClip( ply ) 
-	if ply:Team() = TEAM_SPECTATOR then
+	if ply:Team() == TEAM_SPECTATOR then
 		return true
 	else 
 		return false
