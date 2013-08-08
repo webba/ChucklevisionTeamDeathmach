@@ -4,7 +4,7 @@ AddCSLuaFile( "teamselect.lua" )
 
 include( 'shared.lua' )
 
-DeriveGamemode("base")
+DeriveGamemode("sandbox")
 
 Round = false
 
@@ -26,6 +26,15 @@ function GM:PlayerInitialSpawn( ply )
 		end
 	end
 end
+
+function GM:PlayerNoClip( ply ) 
+	if ply:Team() = TEAM_SPECTATOR then
+		return true
+	else 
+		return false
+	end
+end
+	
 
 function GM:PlayerSpawn( ply )
 	if ply:Team() == 1 or ply:Team() == 2 then
