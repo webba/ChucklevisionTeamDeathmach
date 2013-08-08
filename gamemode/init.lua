@@ -120,7 +120,7 @@ end
 concommand.Add("showmenu", menus)
 
 function SelectTeam( ply, cmd, arg )
-	if GM.Round then
+	if Round then
 		if #arg == 1 then
 			if arg[1] == "1" then
 				ply:SetTeam(2)
