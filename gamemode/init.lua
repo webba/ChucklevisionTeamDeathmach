@@ -40,6 +40,7 @@ function GetSpawnPos( ply )
 	elseif ply:Team() == 2 then
 		vector = Vector(5640.761719 + math.random(1, 290), 4358.299805 + math.random(1, 270), -843.028503)
 	end
+	return vector
 end
 
 function GetCameraPos()
