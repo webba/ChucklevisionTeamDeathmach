@@ -5,6 +5,7 @@ AddCSLuaFile( "cl_init.lua" )
 include( 'shared.lua' )
 
 DeriveGamemode("sandbox")
+math.randomseed(os.time())
 
 local Round = false
 
@@ -22,11 +23,32 @@ function GM:PlayerInitialSpawn( ply )
 		ply:KillSilent()
 		ply:Lock()
 		ply:Spectate(OBS_MODE_ROAMING)
+		ply:SetPos(GetCameraPos())
 		if Round then
 			umsg.Start("TeamMenu", ply)
 			umsg.End()
 		end
 	end
+end
+
+function GetSpawnPos( ply )
+	local vector = Vector(0,0,0)
+	if ply:Team() == 1 then
+		vector = Vector(4940.808594 + math.random(1, 500), 6616.148438 - math.random(1, 300), -853.556458)
+	elseif ply:Team() == 2 then
+		vector = Vector(5640.761719 + math.random(1, 290), 4358.299805 + math.random(1, 270), -843.028503)
+	end
+end
+
+function GetCameraPos()
+	local n1 = math.random(1, 3)
+	local x, y, z = 4736.417480, 5314.400391 - math.random(1, 650), -342.520813
+	if n1 == 2 then
+		x, y, z = 5943.297852 + math.random(1, 200), 5599.052246, -303.236877
+	elseif n1 == 3 then
+		x, y, z = 7130.868164, 6053.958496 - math.random(1, 400), -272.230988
+	end
+	return Vector(x, y, z)
 end
 
 function GM:PlayerNoClip( ply ) 
@@ -61,6 +83,7 @@ function GM:PlayerSpawn( ply )
 		ply:PickUpAmmoType("incendiary")
 		ply:PickUpAmmoType("magnum")
 		ply:PickUpAmmoType("slug")
+		ply:SetPos(GetSpawnPos(ply))
 	end
 end
 
